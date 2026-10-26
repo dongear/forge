@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge — личный кабинет</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: white ground, rounded panel with a left icon rail like the Forge map screen; profile card left, details right. */
+:root{
+  --bg:#FFFFFF; --panel:#FFFFFF; --inner:#F4F4F6; --ink:#1E1F24; --muted:#60636D; --line:#D9DADF;
+  --accent:#D92D6A; --accent-deep:#8E1B3A; --accent-ink:#FFFFFF;
+  --s-form:#2F5BD3; --s-open:#D92D6A; --s-done:#3D9A2B; --s-idle:#ABABB0; --rail:#6B6D75;
+  --f:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+h1,h2,h3,p,ul{margin:0}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.2}
+ul{padding:0;list-style:none}
+.frame{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:76px 1fr;gap:20px;background:var(--panel);border-radius:28px;padding:20px 24px 28px;border:1px solid var(--line)}
+.frame>*{min-width:0}
+.logo{font-size:22px;font-weight:500;color:var(--accent);letter-spacing:-.02em;grid-column:1/-1}
+.rail{align-self:start;background:var(--inner);border-radius:18px;padding:8px;display:grid;gap:6px;width:56px}
+.rail a{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--rail);text-decoration:none}
+.rail a.on{background:var(--rail);color:#fff}
+.rail svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.top h1{font-size:26px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;font:600 14px var(--f);padding:10px 18px;border-radius:99px;text-decoration:none;border:1.5px solid var(--accent);color:var(--accent);background:transparent}
+.btn.fill{background:var(--accent);color:var(--accent-ink)}
+
+.cols{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}
+.cols>*{min-width:0}
+.card{background:var(--inner);border-radius:22px;padding:24px}
+.who{text-align:left}
+.ava{width:84px;height:84px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:30px;font-weight:600;margin-bottom:16px}
+.who h2{font-size:22px}
+.who .role{color:var(--accent);font-weight:600;margin-top:4px}
+.facts{margin-top:18px;display:grid;gap:0}
+.facts li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.facts span{color:var(--muted)}
+.facts b{font-weight:500;text-align:right}
+.demo{margin-top:16px;font-size:12px;color:var(--muted)}
+
+.stack{display:grid;gap:16px}
+.card h3{font-size:18px;margin-bottom:12px}
+.card p{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:14px;font-weight:500;padding:6px 14px;border-radius:99px;border:1.5px solid var(--accent);color:var(--accent);background:var(--panel)}
+.chips.soft span{border-color:var(--line);color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two>*{min-width:0}
+.hours{display:flex;align-items:baseline;gap:8px}
+.hours b{font-size:34px;font-weight:600;letter-spacing:-.03em}
+.days{display:flex;gap:6px;margin-top:14px}
+.days span{flex:1;text-align:center;font-size:12px;font-weight:600;padding:7px 0;border-radius:8px;background:var(--panel);color:var(--muted)}
+.days span.on{background:var(--accent);color:var(--accent-ink)}
+.exp li{padding:12px 0;border-top:1px solid var(--line)}
+.exp li:first-child{border-top:0;padding-top:0}
+.exp b{display:block;font-weight:600}
+.exp span{color:var(--muted);font-size:15px}
+.teams li{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.teams li:first-child{border-top:0;padding-top:0}
+.teams i{width:12px;height:12px;border-radius:50%;flex:none}
+.teams .n{flex:1;min-width:0}
+.teams b{display:block;font-weight:600}
+.teams .n span{color:var(--muted);font-size:14px}
+.teams small{font-size:13px;color:var(--muted);white-space:nowrap}
+
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+@media(max-width:700px){
+  .frame{grid-template-columns:1fr;padding:16px;border-radius:22px;gap:14px}
+  .rail{width:auto;display:flex;padding:6px}
+  .two{grid-template-columns:1fr}
+}
+html,body{margin:0}
+</style>
+</head>
+<body>
+<div class="frame">
+  <span class="logo">Forge</span>
+  <nav class="rail" aria-label="Разделы">
+    <a href="#" aria-label="Карта"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+    <a href="#" aria-label="Чаты"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+    <a href="#" aria-label="Люди"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14c2.5 0 4 2 4 5"/></svg></a>
+    <a href="#" class="on" aria-label="Профиль" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></a>
+  </nav>
+
+  <main>
+    <div class="top">
+      <h1>Профиль</h1>
+      <div class="btns">
+        <a class="btn fill" href="#">Создать команду</a>
+        <a class="btn" href="#">Редактировать</a>
+      </div>
+    </div>
+
+    <div class="cols">
+      <aside class="card who">
+        <div class="ava" aria-hidden="true">АС</div>
+        <h2>Анна Смирнова</h2>
+        <p class="role">UX/UI-дизайнер</p>
+        <ul class="facts">
+          <li><span>Вуз</span><b>ИТМО</b></li>
+          <li><span>Факультет</span><b>Программная инженерия</b></li>
+          <li><span>Курс</span><b>3</b></li>
+          <li><span>Город</span><b>Санкт-Петербург</b></li>
+        </ul>
+        <p class="demo">Пример профиля</p>
+      </aside>
+
+      <div class="stack">
+        <section class="card">
+          <h3>О себе</h3>
+          <p>Рисую интерфейсы и исследую, как ими пользуются. Хочу делать продукты, которые дойдут до реальных пользователей, а не останутся макетами.</p>
+        </section>
+
+        <div class="two">
+          <section class="card">
+            <h3>Навыки</h3>
+            <div class="chips"><span>Figma</span><span>UX-исследования</span><span>Прототипы</span><span>Дизайн-системы</span></div>
+          </section>
+          <section class="card">
+            <h3>Мотивация</h3>
+            <div class="chips soft"><span>Победа в конкурсах</span><span>Портфолио</span><span>Долгие проекты</span></div>
+          </section>
+        </div>
+
+        <div class="two">
+          <section class="card">
+            <h3>Время на проект</h3>
+            <div class="hours"><b>8</b><span style="color:var(--muted)">часов в неделю</span></div>
+            <div class="days" aria-label="Свободные дни">
+              <span class="on">Пн</span><span>Вт</span><span class="on">Ср</span><span>Чт</span><span class="on">Пт</span><span class="on">Сб</span><span class="on">Вс</span>
+            </div>
+          </section>
+          <section class="card">
+            <h3>Опыт</h3>
+            <ul class="exp">
+              <li><b>Хакатон по мобильным приложениям</b><span>Дизайн интерфейса, 2 место</span></li>
+              <li><b>Студенческий проект</b><span>Редизайн сайта клуба</span></li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="card">
+          <h3>Мои команды</h3>
+          <ul class="teams">
+            <li><i style="background:var(--s-open)"></i><div class="n"><b>Хакатон по ИИ</b><span>Ищем разработчика и аналитика</span></div><small>идёт набор</small></li>
+            <li><i style="background:var(--s-form)"></i><div class="n"><b>Приложение для студенческих клубов</b><span>Роль: дизайнер</span></div><small>формируется</small></li>
+            <li><i style="background:var(--s-done)"></i><div class="n"><b>Конкурс городских проектов</b><span>Роль: дизайнер</span></div><small>сформирована</small></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

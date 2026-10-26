@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge — скоро</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: grey ground, one rounded panel, wordmark and message left, map card right. */
+:root{
+  --bg:#FFFFFF; --panel:#FFFFFF; --inner:#F4F4F6; --ink:#1E1F24; --muted:#60636D; --line:#D9DADF;
+  --accent:#D92D6A; --accent-deep:#8E1B3A; --accent-ink:#FFFFFF;
+  --s-form:#2F5BD3; --s-open:#D92D6A; --s-done:#3D9A2B; --s-idle:#ABABB0;
+  --f:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0C0D10;--panel:#17181D;--inner:#1F2127;--ink:#ECEDF1;--muted:#A0A3AE;--line:#2C2E36;--accent:#F0467F;--accent-deep:#FF8FB0;--accent-ink:#17181D;--s-form:#6B8CFF;--s-done:#63C24E;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0C0D10;--panel:#17181D;--inner:#1F2127;--ink:#ECEDF1;--muted:#A0A3AE;--line:#2C2E36;--accent:#F0467F;--accent-deep:#FF8FB0;--accent-ink:#17181D;--s-form:#6B8CFF;--s-done:#63C24E;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+h1,p,ul{margin:0}
+.frame{max-width:1180px;margin:0 auto;min-height:calc(100vh - 32px);min-height:calc(100dvh - 32px);background:var(--panel);border-radius:28px;padding:20px 24px 28px;display:flex;flex-direction:column;gap:20px}
+@media(max-width:600px){.frame{padding:16px;border-radius:22px}}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:22px;font-weight:500;color:var(--accent);letter-spacing:-.02em}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:8px 16px;border-radius:99px;border:1.5px solid var(--accent);color:var(--accent)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.main{flex:1;background:var(--inner);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.main>*{min-width:0}
+@media(max-width:600px){.main{padding:24px 18px;border-radius:18px}}
+@media(max-width:860px){.main{grid-template-columns:1fr}}
+h1{font-size:clamp(56px,11vw,120px);font-weight:600;line-height:1;letter-spacing:-.04em;color:var(--accent)}
+.tag{margin-top:20px;font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:26em}
+.status{list-style:none;padding:0;margin-top:28px;display:grid;gap:0;max-width:28em}
+.status li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-weight:500}
+.status li:last-child{border-bottom:1px solid var(--line)}
+.status i{width:11px;height:11px;border-radius:50%;flex:none}
+.status small{margin-left:auto;font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
+.map{width:100%;height:auto;display:block}
+.map .ground{fill:var(--panel)}
+.map .road{stroke:var(--line);stroke-width:10;stroke-linecap:round;fill:none}
+.map .zone{fill:var(--accent);fill-opacity:.28;stroke:var(--accent-deep);stroke-width:1.5}
+.map .d-form{fill:var(--s-form)}.map .d-open{fill:var(--s-open)}
+.map .pulse{transform-origin:240px 155px;animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.12);opacity:.15}}
+@media(prefers-reduced-motion:reduce){.map .pulse,.pill i{animation:none}}
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--inner:#F4F4F6;--ink:#1E1F24;--muted:#60636D;--line:#D9DADF;--accent:#D92D6A;--accent-deep:#8E1B3A;--accent-ink:#FFFFFF;--s-form:#2F5BD3;--s-done:#3D9A2B;color-scheme:light}
+html,body{margin:0}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bar"><span class="logo">Forge</span><span class="pill"><i></i>Запуск скоро</span></div>
+  <div class="main">
+    <div>
+      <h1>Forge</h1>
+      <p class="tag">Межвузовское пространство, где студенты находят партнёров, собирают команды и работают над проектами вместе.</p>
+      <ul class="status">
+        <li><i style="background:var(--s-open)"></i>Карта вузов и поиск по городу<small>готовим</small></li>
+        <li><i style="background:var(--s-form)"></i>Профили с навыками и временем<small>готовим</small></li>
+        <li><i style="background:var(--s-done)"></i>Общее рабочее пространство команды<small>готовим</small></li>
+      </ul>
+    </div>
+    <svg class="map" viewBox="0 0 480 360" role="img" aria-label="Карта города: рядом с вузом формируется команда">
+      <rect class="ground" width="480" height="360" rx="20"/>
+      <path class="road" d="M-10 90 L170 120 L330 60 L490 100"/>
+      <path class="road" d="M120 -10 L150 190 L110 370"/>
+      <path class="road" d="M380 -10 L350 200 L420 370"/>
+      <path class="road" d="M-10 270 L250 250 L490 290"/>
+      <circle class="zone pulse" cx="240" cy="155" r="92"/>
+      <circle class="zone" cx="240" cy="155" r="92"/>
+      <circle class="d-form" cx="240" cy="100" r="9"/>
+      <circle class="d-open" cx="200" cy="165" r="9"/>
+      <circle class="d-open" cx="280" cy="165" r="9"/>
+      <circle class="d-open" cx="240" cy="212" r="9"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

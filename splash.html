@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forge — загрузка</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one centered column on white: team circle with dots, wordmark, tagline, loading bar. */
+:root{
+  --bg:#FFFFFF; --ink:#1E1F24; --muted:#60636D; --line:#E4E5EA;
+  --accent:#D92D6A; --accent-deep:#8E1B3A;
+  --s-form:#2F5BD3; --s-open:#D92D6A;
+  --f:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:grid;place-items:center;min-height:100vh;min-height:100dvh}
+.splash{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;padding-block:32px}
+.mark{width:min(147px,40vw);height:auto;display:block}
+.zone{fill:var(--accent);fill-opacity:.25;stroke:var(--accent-deep);stroke-width:2;transform-origin:110px 110px;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.dot{transform-origin:center;transform-box:fill-box;animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+.d-form{fill:var(--s-form)}.d-open{fill:var(--s-open)}
+.d1{animation-delay:.5s}.d2{animation-delay:.7s}.d3{animation-delay:.9s}.d4{animation-delay:1.1s}
+h1{margin:0;font-size:clamp(30px,8vw,43px);font-weight:500;letter-spacing:-.04em;color:var(--accent);animation:rise .7s .3s ease-out both}
+.bar{width:107px;height:3px;border-radius:99px;background:var(--line);overflow:hidden;animation:rise .7s .7s ease-out both}
+.bar i{display:block;height:100%;width:100%;border-radius:99px;background:var(--accent);transform-origin:left;animation:load 2.4s .8s cubic-bezier(.5,0,.2,1) both}
+@keyframes grow{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes rise{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@keyframes load{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
+</style>
+</head>
+<body>
+<main class="splash">
+  <svg class="mark" viewBox="0 0 220 220" role="img" aria-label="Команда формируется на карте">
+    <circle class="zone" cx="110" cy="110" r="96"/>
+    <circle class="dot d-form d1" cx="110" cy="52" r="10"/>
+    <circle class="dot d-open d2" cx="66" cy="124" r="10"/>
+    <circle class="dot d-open d3" cx="154" cy="124" r="10"/>
+    <circle class="dot d-open d4" cx="110" cy="170" r="10"/>
+  </svg>
+  <h1>Forge</h1>
+  <div class="bar" role="progressbar" aria-label="Загрузка"><i></i></div>
+</main>
+</body>
+</html>

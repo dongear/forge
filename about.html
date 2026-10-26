@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge — о проекте</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: white ground, one rounded panel with three short blocks: intro with map, about us, values. */
+:root{
+  --bg:#FFFFFF; --panel:#FFFFFF; --inner:#F4F4F6; --ink:#1E1F24; --muted:#60636D; --line:#D9DADF;
+  --accent:#D92D6A; --accent-deep:#8E1B3A; --accent-ink:#FFFFFF;
+  --s-form:#2F5BD3; --s-open:#D92D6A; --s-done:#3D9A2B; --s-idle:#ABABB0;
+  --f:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0C0D10;--panel:#17181D;--inner:#1F2127;--ink:#ECEDF1;--muted:#A0A3AE;--line:#2C2E36;--accent:#F0467F;--accent-deep:#FF8FB0;--accent-ink:#17181D;--s-form:#6B8CFF;--s-done:#63C24E;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0C0D10;--panel:#17181D;--inner:#1F2127;--ink:#ECEDF1;--muted:#A0A3AE;--line:#2C2E36;--accent:#F0467F;--accent-deep:#FF8FB0;--accent-ink:#17181D;--s-form:#6B8CFF;--s-done:#63C24E;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:600;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+.frame{max-width:1180px;margin:0 auto;background:var(--panel);border-radius:28px;padding:20px 24px 28px}
+@media(max-width:600px){.frame{padding:16px;border-radius:22px}}
+.logo{display:block;font-size:22px;font-weight:500;color:var(--accent);letter-spacing:-.02em;padding:4px 0 20px}
+.stack{display:grid;gap:16px}
+.block{background:var(--inner);border-radius:22px;padding:40px}
+@media(max-width:600px){.block{padding:24px 18px;border-radius:18px}}
+.tag{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.hero>*{min-width:0}
+.hero h1{font-size:clamp(36px,5.4vw,60px);margin-top:12px}
+.hero h1 b{color:var(--accent);font-weight:600}
+.hero .lead{margin-top:20px;font-size:19px;color:var(--muted);max-width:30em}
+.map{width:100%;height:auto;display:block}
+.map .ground{fill:var(--panel)}
+.map .road{stroke:var(--line);stroke-width:10;stroke-linecap:round;fill:none}
+.map .zone{fill:var(--accent);fill-opacity:.28;stroke:var(--accent-deep);stroke-width:1.5}
+.map .d-form{fill:var(--s-form)}.map .d-open{fill:var(--s-open)}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+
+.about h2{font-size:clamp(24px,3.2vw,34px);margin-top:10px;max-width:22em}
+.about p.txt{margin-top:16px;color:var(--muted);max-width:38em;font-size:18px}
+
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.val{background:var(--panel);border-radius:16px;padding:22px;min-width:0}
+.val i{display:block;width:12px;height:12px;border-radius:50%;margin-bottom:16px}
+.val h3{font-size:19px;margin-bottom:6px}
+.val p{color:var(--muted);font-size:15px}
+@media(max-width:900px){.vals{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.vals{grid-template-columns:1fr}}
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--inner:#F4F4F6;--ink:#1E1F24;--muted:#60636D;--line:#D9DADF;--accent:#D92D6A;--accent-deep:#8E1B3A;--accent-ink:#FFFFFF;--s-form:#2F5BD3;--s-done:#3D9A2B;color-scheme:light}
+html,body{margin:0}
+</style>
+</head>
+<body>
+<div class="frame">
+  <span class="logo">Forge</span>
+  <div class="stack">
+    <div class="block hero">
+      <div>
+        <p class="tag">О проекте</p>
+        <h1>Найди <b>своих</b> в других вузах</h1>
+        <p class="lead">Межвузовское пространство, где студенты находят партнёров, собирают команды и вместе доводят проекты до результата.</p>
+      </div>
+      <svg class="map" viewBox="0 0 480 360" role="img" aria-label="Карта города: рядом с вузом формируется команда">
+        <rect class="ground" width="480" height="360" rx="20"/>
+        <path class="road" d="M-10 90 L170 120 L330 60 L490 100"/>
+        <path class="road" d="M120 -10 L150 190 L110 370"/>
+        <path class="road" d="M380 -10 L350 200 L420 370"/>
+        <path class="road" d="M-10 270 L250 250 L490 290"/>
+        <circle class="zone" cx="240" cy="180" r="92"/>
+        <circle class="d-form" cx="240" cy="125" r="9"/>
+        <circle class="d-open" cx="200" cy="190" r="9"/>
+        <circle class="d-open" cx="280" cy="190" r="9"/>
+        <circle class="d-open" cx="240" cy="237" r="9"/>
+      </svg>
+    </div>
+
+    <div class="block about">
+      <p class="tag">О нас</p>
+      <h2>Мы делаем Forge, чтобы сильные студенты из разных вузов находили друг друга</h2>
+      <p class="txt">Хорошие проекты не должны упираться в границы одного университета. Мы даём студентам место, где можно быстро найти нужных людей и начать работать вместе.</p>
+    </div>
+
+    <div class="block">
+      <p class="tag">Ценности</p>
+      <div class="vals">
+        <div class="val"><i style="background:var(--s-form)"></i><h3>Без границ</h3><p>Хорошие партнёры могут учиться в любом вузе.</p></div>
+        <div class="val"><i style="background:var(--s-open)"></i><h3>Доверие</h3><p>Работаем с людьми, которым можно доверять.</p></div>
+        <div class="val"><i style="background:var(--s-done)"></i><h3>Результат</h3><p>Важно довести дело до конца, а не просто познакомиться.</p></div>
+        <div class="val"><i style="background:var(--s-idle)"></i><h3>Порядок</h3><p>Задачи и материалы команды лежат в одном месте.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
