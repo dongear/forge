@@ -57,11 +57,18 @@ h1,h2,h3{font-weight:600;line-height:1.15;letter-spacing:-.02em;text-wrap:balanc
 @media(max-width:520px){.vals{grid-template-columns:1fr}}
 :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--inner:#F4F4F6;--ink:#1E1F24;--muted:#60636D;--line:#D9DADF;--accent:#D92D6A;--accent-deep:#8E1B3A;--accent-ink:#FFFFFF;--s-form:#2F5BD3;--s-done:#3D9A2B;color-scheme:light}
 html,body{margin:0}
+.topbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar{margin-bottom:20px}
+.topbar .logo,a.logo{padding:0;text-decoration:none}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{font:500 14px var(--f);padding:8px 14px;border-radius:99px;text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current]{background:var(--inner);color:var(--ink)}
 </style>
 </head>
 <body>
 <div class="frame">
-  <span class="logo">Forge</span>
+  <div class="topbar"><a class="logo" href="index.html">Forge</a><nav class="nav" aria-label="Страницы сайта"><a href="about.html" aria-current="page">О проекте</a><a href="profile.html">Личный кабинет</a></nav></div>
   <div class="stack">
     <div class="block hero">
       <div>

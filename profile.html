@@ -80,11 +80,17 @@ ul{padding:0;list-style:none}
   .two{grid-template-columns:1fr}
 }
 html,body{margin:0}
+.topbar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar .logo,a.logo{padding:0;text-decoration:none}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{font:500 14px var(--f);padding:8px 14px;border-radius:99px;text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current]{background:var(--inner);color:var(--ink)}
 </style>
 </head>
 <body>
 <div class="frame">
-  <span class="logo">Forge</span>
+  <div class="topbar"><a class="logo" href="index.html">Forge</a><nav class="nav" aria-label="Страницы сайта"><a href="about.html">О проекте</a><a href="profile.html" aria-current="page">Личный кабинет</a></nav></div>
   <nav class="rail" aria-label="Разделы">
     <a href="#" aria-label="Карта"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
     <a href="#" aria-label="Чаты"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
